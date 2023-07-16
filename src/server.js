@@ -14,6 +14,15 @@ const server = async () => {
     console.log("MongoDB connected");
     app.use(express.json());
 
+    app.get("/user", async (req, res) => {
+      try {
+        const users = await User.find({});
+        return res.send({ users: users });
+      } catch (error) {
+        console.log(error);
+      }
+    });
+
     app.post("/user", async (req, res) => {
       try {
         let { username, name } = req.body;
@@ -26,7 +35,7 @@ const server = async () => {
             .status(400)
             .send({ err: "Both first and last names are requied" });
 
-        const user = new User(username, name);
+        const user = new User(req.body);
         await user.save();
         return res.send({ user });
       } catch (error) {
