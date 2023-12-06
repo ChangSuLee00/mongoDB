@@ -5,7 +5,8 @@ import cors from "cors";
 import helmet from "helmet";
 
 import connectDatabase from "./config/database.js";
-import routers from "./routers.js";
+import spotRouter from "./components/spots/router.js";
+import userRouter from "./components/users/router.js";
 
 dotenv.config();
 connectDatabase();
@@ -21,6 +22,8 @@ app.use(
   })
 );
 app.use(express.static("/"));
-app.use(routers);
+
+app.use("/spots", spotRouter);
+app.use("/users", userRouter);
 
 export default app;
