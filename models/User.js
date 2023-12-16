@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-UserSchema.index({ email: 1 });
+UserSchema.index({ email: 1 }, { unique: true });
 UserSchema.index({ address: 1 });
 
 UserSchema.pre("save", function (next) {
