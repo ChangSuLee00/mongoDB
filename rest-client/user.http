@@ -3,22 +3,23 @@
 
 # Base URL / develop
 @base_url = http://localhost:3000
-
 # Base URL / production
-# @base_url = production-url
 
+## Fetch a specific user by email
 ###
-# Fetch a specific user by ID (example)
 GET {{base_url}}/users/cslee0034@gmail.com
 
+## Create a new user
 ###
-# Create a new user (example)
-# This assumes JSON format for the request body
 POST {{base_url}}/users
 Content-Type: application/json
 
 {
   "email": "cslee0034@gmail.com",
-  "address": "서울시 마포구 양화로 32",
+  "address": {
+    "country": "South Korea",
+    "city": "Seoul",
+    "district": "Gangnam"
+  },
   "addressDetail": "..."
 }
