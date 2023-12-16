@@ -28,5 +28,15 @@ const UserSchema = new mongoose.Schema({
 UserSchema.index({ email: 1 });
 UserSchema.index({ address: 1 });
 
+UserSchema.pre("save", function (next) {
+  if (!this.createdAt) {
+    this.createdAt = new Date();
+  }
+  if (!this.updatedAt) {
+    this.updatedAt = new Date();
+  }
+  next();
+});
+
 const User = mongoose.model("User", UserSchema, "User");
 export default User;
