@@ -7,6 +7,7 @@ import helmet from "helmet";
 import connectDatabase from "./config/database.js";
 import spotRouter from "./components/spots/router.js";
 import userRouter from "./components/users/router.js";
+import errorHandler from "./config/errorHandler.js";
 
 dotenv.config();
 connectDatabase();
@@ -25,5 +26,7 @@ app.use(express.static("/"));
 
 app.use("/spots", spotRouter);
 app.use("/users", userRouter);
+
+app.use(errorHandler);
 
 export default app;
