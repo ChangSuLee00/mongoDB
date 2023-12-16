@@ -25,7 +25,9 @@ class Controller {
       const { email, address, addressDetail } = req.body;
       const user = await this.service.createUser({
         email,
-        address,
+        country: address.country,
+        city: address.city,
+        district: address.district,
         addressDetail,
       });
 
